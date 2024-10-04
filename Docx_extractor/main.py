@@ -9,37 +9,37 @@ import gspread
 
 credentials = {
      "installed":{
-    "client_id":"427152031284-lstf22oo911ovohv4il6ldh9k6rhkbum.apps.googleusercontent.com",
+    "client_id":"   ",
      "project_id":"quiz-paracadutismo",
      "auth_uri":"https://accounts.google.com/o/oauth2/auth",
      "token_uri":"https://oauth2.googleapis.com/token",
      "auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs",
-     "client_secret":"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",
+     "client_secret":"   ",
      "redirect_uris":["http://localhost"]
      
      }
   }
 
 authorized_user = {
-  "refresh_token": "1//09c3saVBQDNrbCgYIARAAGAkSNwF-L9Ir9K2Qkg9vECeAjqYOPV4JqX5lLQ9vh7-ICiCSql4XxZvZ9GDSNliGCVRhtkH-H-sJjfw",
+  "refresh_token": "  ",
   "token_uri": "https://oauth2.googleapis.com/token",
-  "client_id": "427152031284-lstf22oo911ovohv4il6ldh9k6rhkbum.apps.googleusercontent.com",
-  "client_secret": "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", 
+  "client_id": "   ",
+  "client_secret": "  ", 
   "scopes": [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive"
     ], 
   "universe_domain": "googleapis.com", 
   "account": "", 
-  "expiry": "2024-06-21T16:01:03.051872Z"
+  "expiry": "  "
   }
 
 gc, authorized_user = gspread.oauth_from_dict(credentials, authorized_user)
 
-worksheet = gc.open("Prova python")
+worksheet = gc.open("  ") # Insert here the name of the sheet
 
 
-#Crea un Database MySQL
+# Script connect a MySql Database if it exist
 mydb = mysql.connector.connect(
 host="localhost",
 user="root",
@@ -51,7 +51,7 @@ print('Database Connesso')
 cursor = mydb.cursor()
 
 
-#Crea un Database MySQL    
+# This function create a database if it doesn't exist   
 def crea_database():
     
     DB_NAME = 'quiz'
@@ -79,7 +79,7 @@ def crea_database():
     
       
 
-# Carica il documento Word e lo stampa riga per riga     
+# This function load the docx document    
 def carica_documento():
     document = Document('quiz.docx')
     testo = ""
@@ -88,7 +88,7 @@ def carica_documento():
         testo += paragrafo.text + "\n"   
     return testo
 
-#Estrae Domande, Risposte corrette e Risposte Sbagliate dal testo  
+# This function extract data from Docx
 def estrai_dati(testo):
     
     domande = []
@@ -121,7 +121,10 @@ def estrai_dati(testo):
         risposte_errate.remove("")
     
     return domande, risposte_corrette, risposte_errate
-            
+    
+
+# This function can compile a google sheet with data
+        
 def aggiorna_foglio_google(risposte_corrette,risposte_errate,domande):
     spreadsheet = gc.open("Quiz Paracadutismo")
     worksheet = spreadsheet.sheet1
@@ -142,6 +145,7 @@ def aggiorna_foglio_google(risposte_corrette,risposte_errate,domande):
  
     return True
 
+# Function for compile database (This part is not complete)
 
 def compila_database(risposte_errate):
     
