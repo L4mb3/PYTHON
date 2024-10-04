@@ -7,32 +7,9 @@ import os.path
 from docx import Document
 import gspread
 
-credentials = {
-     "installed":{
-    "client_id":"   ",
-     "project_id":"quiz-paracadutismo",
-     "auth_uri":"https://accounts.google.com/o/oauth2/auth",
-     "token_uri":"https://oauth2.googleapis.com/token",
-     "auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs",
-     "client_secret":"   ",
-     "redirect_uris":["http://localhost"]
-     
-     }
-  }
-
-authorized_user = {
-  "refresh_token": "  ",
-  "token_uri": "https://oauth2.googleapis.com/token",
-  "client_id": "   ",
-  "client_secret": "  ", 
-  "scopes": [
-    "https://www.googleapis.com/auth/spreadsheets",
-    "https://www.googleapis.com/auth/drive"
-    ], 
-  "universe_domain": "googleapis.com", 
-  "account": "", 
-  "expiry": "  "
-  }
+credentials = {}
+  
+authorized_user = {}
 
 gc, authorized_user = gspread.oauth_from_dict(credentials, authorized_user)
 
